@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class AnimationController : MonoBehaviour {
+public class AnimationController : NetworkBehaviour {
 
     [SerializeField]
     private Animator animator;
@@ -14,7 +15,9 @@ public class AnimationController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Animation(InputManager.Instance.GetInput());
+        if (isLocalPlayer) {
+            Animation(InputManager.Instance.GetInput());
+        }
     }
 
     private Vector3 prePos;

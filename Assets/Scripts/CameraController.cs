@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : NetworkBehaviour {
 
     [SerializeField]
     private GameObject target;
@@ -14,12 +15,9 @@ public class CameraController : MonoBehaviour {
         offset = transform.localPosition - target.transform.localPosition;
     }
 
-    void Update() {
-
-    }
-
     void FixedUpdate() {
         Vector3 targetCamPos = target.transform.localPosition + offset;
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetCamPos, smoothing * Time.deltaTime);
     }
+
 }

@@ -1,19 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
 
 
+    [SerializeField]
+    private GameObject sceneCamera;
+    [SerializeField]
+    private float smoothing;
 
     // Use this for initialization
     void Start() {
-
+        if (isLocalPlayer) {
+            sceneCamera.GetComponent<Camera>().enabled = true;
+            sceneCamera.GetComponent<AudioListener>().enabled = true;
+            sceneCamera.transform.parent = null;
+        }
     }
 
     // Update is called once per frame
     void Update() {
-        Move(InputManager.Instance.GetInput());
+        if (isLocalPlayer) {
+            Move(InputManager.Instance.GetInput());
+        }
     }
 
     [SerializeField]

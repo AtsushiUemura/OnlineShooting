@@ -8,6 +8,7 @@ public class InputManager : SingletonMonoBehaviour<InputManager> {
     public KeyCode down;
     public KeyCode right;
     public KeyCode left;
+    public KeyCode forward;
 
     // Use this for initialization
     void Start() {
@@ -16,15 +17,15 @@ public class InputManager : SingletonMonoBehaviour<InputManager> {
 
     // Update is called once per frame
     void Update() {
-       
+
     }
 
     /// <summary>
     /// キー入力処理
     /// </summary>
     /// <returns></returns>
-    public Vector2 GetInput() {
-        Vector2 input = Vector2.zero;
+    public Vector3 GetInput() {
+        Vector3 input = Vector3.zero;
         if (Input.GetKey(up)) {
             input.y = 1;
         }
@@ -36,6 +37,9 @@ public class InputManager : SingletonMonoBehaviour<InputManager> {
         }
         if (Input.GetKey(left)) {
             input.x = -1;
+        }
+        if (Input.GetKey(forward)) {
+            input.z = 1;
         }
         return input;
     }

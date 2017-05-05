@@ -18,6 +18,7 @@ public class CameraController : NetworkBehaviour {
     void FixedUpdate() {
         Vector3 targetCamPos = target.transform.localPosition + offset;
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetCamPos, smoothing * Time.deltaTime);
+       
     }
 
 }
